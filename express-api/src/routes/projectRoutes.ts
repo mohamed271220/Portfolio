@@ -30,6 +30,10 @@ router.post(
       .withMessage("Technologies must be an array")
       .notEmpty(),
     check("link").optional().isURL().withMessage("Link must be a valid URL"),
+    check("github")
+      .optional()
+      .isURL()
+      .withMessage("github must be a valid URL"),
     check("images").optional().isArray().withMessage("Images must be an array"),
     check("category").notEmpty().withMessage("Category is required"),
     handleValidationErrors,
@@ -52,6 +56,10 @@ router.put(
       .isArray()
       .withMessage("Technologies must be an array"),
     check("link").optional().isURL().withMessage("Link must be a valid URL"),
+    check("github")
+      .optional()
+      .isURL()
+      .withMessage("github must be a valid URL"),
     check("images").optional().isArray().withMessage("Images must be an array"),
     check("category")
       .optional()

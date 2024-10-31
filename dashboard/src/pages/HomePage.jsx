@@ -56,7 +56,7 @@ const HomePage = () => {
                 <h2 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-200">What My Clients Say</h2>
                 <div className="mt-10 max-w-2xl mx-auto">
                     <blockquote className="border-l-4 border-blue-600 pl-4 italic dark:border-blue-300">
-                        "Working with this team transformed my business. Their expertise in web development and user experience is unmatched!"
+                        &quot;Working with this team transformed my business. Their expertise in web development and user experience is unmatched!&quot;
                         <footer className="mt-2 text-right font-semibold text-gray-800 dark:text-gray-200">- Alex Johnson</footer>
                     </blockquote>
                 </div>

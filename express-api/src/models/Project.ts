@@ -6,6 +6,7 @@ export interface IProject extends Document {
   description: string;
   technologies: string[];
   link?: string;
+  github?: string;
   images?: string[];
   category: ICategory["_id"]; // Reference to the Category model
 }
@@ -15,6 +16,7 @@ const ProjectSchema: Schema = new Schema({
   description: { type: String, required: true },
   technologies: [{ type: String, required: true }],
   link: { type: String },
+  github: { type: String },
   images: [{ type: String }],
   category: { type: Schema.Types.ObjectId, ref: "Category", required: true }, // Reference to the Category model
 });

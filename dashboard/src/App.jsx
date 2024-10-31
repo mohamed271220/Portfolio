@@ -10,6 +10,7 @@ import HomePage from './pages/HomePage';
 import CertificationsPage from './pages/CertificationsPage';
 import SkillsPage from './pages/SkillPage';
 import CategoriesPage from './pages/ProjectCategories';
+import ProjectsPage from './pages/ProjectPage';
 
 
 
@@ -52,6 +53,12 @@ const router = createBrowserRouter([
         path: "/categories",
         element: <ProtectedRoute>
           <CategoriesPage />
+        </ProtectedRoute>
+      },
+      {
+        path: "/projects",
+        element: <ProtectedRoute>
+          <ProjectsPage />
         </ProtectedRoute>
       }
     ]
