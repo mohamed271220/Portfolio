@@ -54,10 +54,76 @@ export const updateEducation = async (
     });
     return response.data;
 }
+
 export const deleteEducation = async (
     id
 ) => {
     const response = await api.delete(`/education/${id}`, {
+        withCredentials: true,
+    });
+
+    return response.data;
+}
+
+export const getSkills = async () => {
+    const response = await api.get('/skills');
+    return response.data;
+}
+export const addSkill = async (
+    skill
+) => {
+    const response = await api.post('/skills', skill, {
+        withCredentials: true,
+    });
+    return response.data;
+}
+
+export const updateSkill = async (
+    skill
+) => {
+    const response = await api.put(`/skills/${skill._id}`, skill, {
+        withCredentials: true,
+    });
+    return response.data;
+}
+
+export const deleteSkill = async (
+    id
+) => {
+    const response = await api.delete(`/skills/${id}`, {
+        withCredentials: true,
+    });
+
+    return response.data;
+}
+
+
+export const getCategories = async () => {
+    const response = await api.get('/categories');
+    return response.data;
+}
+export const addCategory = async (
+    category
+) => {
+    const response = await api.post('/categories', category, {
+        withCredentials: true,
+    });
+    return response.data;
+}
+
+export const updateCategory = async (
+    category
+) => {
+    const response = await api.put(`/categories/${category._id}`, category, {
+        withCredentials: true,
+    });
+    return response.data;
+}
+
+export const deleteCategory = async (
+    id
+) => {
+    const response = await api.delete(`/categories/${id}`, {
         withCredentials: true,
     });
 

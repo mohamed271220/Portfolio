@@ -62,7 +62,7 @@ const EducationPage = () => {
         onSuccess: () => {
             toast.success("Education updated successfully!");
             setEducations(educations.map(edu =>
-                edu.id === currentEducation.id ? { ...currentEducation, logo: currentEducationLogo } : edu
+                edu.id === currentEducation._id ? { ...currentEducation, logo: currentEducationLogo } : edu
             ));
             setShowEditModal(false);
         },
@@ -129,7 +129,7 @@ const EducationPage = () => {
     if (isError) return <p>Error loading education data.</p>;
 
     return (
-        <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-md w-full max-w-md">
+        <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-md ">
             <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-gray-200">Education</h2>
 
             {/* Education Table */}

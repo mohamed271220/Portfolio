@@ -1,4 +1,4 @@
-import { FaHome, FaInfoCircle, FaUserCircle, FaCalendar, FaBook } from 'react-icons/fa'; // Importing icons
+import { FaHome, FaInfoCircle, FaUserCircle, FaCalendar, FaBook, FaCertificate, FaSkiing, FaSquarespace } from 'react-icons/fa'; // Importing icons
 import useAuth from '../../hooks/useAuth';
 import useUser from '../../hooks/useUser';
 import { NavLink } from 'react-router-dom';
@@ -12,6 +12,9 @@ const Sidebar = ({ isOpen }) => {
         { to: '/', label: 'Home', icon: FaHome, authRequired: false },
         { to: '/profile', label: 'Profile', icon: FaUserCircle, authRequired: true },
         { to: '/education', label: 'Education', icon: FaBook, authRequired: true },
+        { to: '/certifications', label: 'Certifications', icon: FaCertificate, authRequired: true },
+        { to: '/skills', label: 'Skills', icon: FaSkiing, authRequired: true },
+        {to: '/categories', label: 'Categories', icon: FaSquarespace, authRequired: true}
     ];
 
     return (

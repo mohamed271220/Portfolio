@@ -9,6 +9,7 @@ import experienceRoutes from "./routes/experienceRoutes";
 import projectRoutes from "./routes/projectRoutes";
 import skillRoutes from "./routes/skillRoutes";
 import testimonialRoutes from "./routes/testimonialRoutes";
+import categoryRoutes from "./routes/categoryRoutes";
 
 const router = express.Router();
 
@@ -22,5 +23,6 @@ router.use("/experience", experienceRoutes);
 router.use("/projects", projectRoutes);
 router.use("/skills", skillRoutes);
 router.use("/testimonials", testimonialRoutes);
+router.use("/categories", categoryRoutes);
 
 export default router;

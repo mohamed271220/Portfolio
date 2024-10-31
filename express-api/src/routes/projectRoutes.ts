@@ -31,6 +31,7 @@ router.post(
       .notEmpty(),
     check("link").optional().isURL().withMessage("Link must be a valid URL"),
     check("images").optional().isArray().withMessage("Images must be an array"),
+    check("category").notEmpty().withMessage("Category is required"),
     handleValidationErrors,
   ],
   addProject
@@ -52,6 +53,10 @@ router.put(
       .withMessage("Technologies must be an array"),
     check("link").optional().isURL().withMessage("Link must be a valid URL"),
     check("images").optional().isArray().withMessage("Images must be an array"),
+    check("category")
+      .optional()
+      .notEmpty()
+      .withMessage("Category cannot be empty"),
     handleValidationErrors,
   ],
   updateProject
