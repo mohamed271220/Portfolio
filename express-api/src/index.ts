@@ -15,7 +15,7 @@ import connectDB from "./config/database";
 import swaggerRouter from "./config/swagger";
 
 const app = express();
-app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(
@@ -36,6 +36,12 @@ app.use("/api/v1", routes);
 // Swagger docs route
 app.use("/api/v1/official-docs/express-api-docs", swaggerRouter);
 
+app.use((err: any, req: any, res: any, next: any) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
+
+// Error handler middleware
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;

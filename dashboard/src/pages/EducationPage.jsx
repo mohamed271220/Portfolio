@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { getEducations, addEducation, updateEducation, deleteEducation } from '../api';
 import MediaUpload from '../components/Form/MediaUpload';
@@ -122,7 +122,7 @@ const EducationPage = () => {
         }
     };
 
-    console.log(currentEducation);
+    console.log(currentEducationLogo);
 
 
     if (isLoading) return <SkeletonLoader mode="comments" />;

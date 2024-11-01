@@ -32,14 +32,14 @@ export const updateUserDetails = async (
 
 
 export const getEducations = async () => {
-    const response = await api.get('/education');
+    const response = await api.get('/educations');
     return response.data;
 }
 
 export const addEducation = async (
     education
 ) => {
-    const response = await api.post('/education', education, {
+    const response = await api.post('/educations', education, {
         withCredentials: true,
     });
     return response.data;
@@ -49,7 +49,7 @@ export const addEducation = async (
 export const updateEducation = async (
     education
 ) => {
-    const response = await api.put(`/education/${education._id}`, education, {
+    const response = await api.put(`/educations/${education._id}`, education, {
         withCredentials: true,
     });
     return response.data;
@@ -58,7 +58,7 @@ export const updateEducation = async (
 export const deleteEducation = async (
     id
 ) => {
-    const response = await api.delete(`/education/${id}`, {
+    const response = await api.delete(`/educations/${id}`, {
         withCredentials: true,
     });
 
@@ -160,4 +160,137 @@ export const deleteProject = async (
     });
 
     return response.data;
+}
+
+export const getExperiences = async () => {
+    const response = await api.get('/experiences');
+    return response.data;
+};
+
+export const addExperience = async (newExperience) => {
+    const response = await api.post('/experiences', newExperience, { withCredentials: true });
+    return response.data;
+};
+
+export const updateExperience = async (updatedExperience) => {
+    const response = await api.put(`/experiences/${updatedExperience._id}`, updatedExperience, { withCredentials: true });
+    return response.data;
+};
+
+export const deleteExperience = async (experienceId) => {
+    const response = await api.delete(`/experiences/${experienceId}`, { withCredentials: true });
+    return response.data;
+};
+
+
+export const getCertifications = async () => {
+    const response = await api.get(`/certifications`);
+    return response.data;
+}
+
+export const addCertification = async (
+    certification
+) => {
+    const response = await api.post('/certifications', certification, {
+        withCredentials: true,
+    });
+    return response.data;
+}
+
+export const updateCertification = async (
+    certification
+) => {
+    const response = await api.put(`/certifications/${certification._id}`, certification, {
+        withCredentials: true,
+    });
+    return response.data;
+}
+
+export const deleteCertification = async (
+    id
+) => {
+    const response = await api.delete(`/certifications/${id}`, {
+        withCredentials: true,
+    });
+
+    return response.data;
+}
+
+export const getTestimonials = async () => {
+    const response = await api.get('/testimonials');
+    return response.data;
+}
+
+export const addTestimonial = async (testimonial) => {
+    const response = await api.post('/testimonials', testimonial, {
+        withCredentials: true,
+    });
+    return response.data;
+}
+
+export const updateTestimonial = async (
+    testimonial
+) => {
+    const response = await api.put(`/testimonials/${testimonial._id}`, testimonial, {
+        withCredentials: true,
+    });
+    return response.data;
+}
+
+export const deleteTestimonial = async (
+    id
+) => {
+    const response = await api.delete(`/testimonials/${id}`, {
+        withCredentials: true,
+    });
+
+    return response.data;
+}
+
+export const getBlogPosts = async () => {
+    const response = await api.get('/blogs');
+    return response.data;
+}
+
+export const addBlogPost = async (
+    post
+) => {
+    const response = await api.post('/blogs', post, {
+        withCredentials: true,
+    });
+    return response.data;
+}
+
+export const updateBlogPost = async (
+    post
+) => {
+    const response = await api.put(`/blogs/${post._id}`, post, {
+        withCredentials: true,
+    });
+    return response.data;
+}
+
+export const deleteBlogPost = async (
+    id
+) => {
+    const response = await api.delete(`/blogs/${id}`, {
+        withCredentials: true,
+    });
+
+    return response.data;
+}
+
+export const uploadImageToS3 = async (file) => {
+
+    const formData = new FormData();
+    formData.append('photos', file);
+
+    const response = await api.post('/media/upload', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+        withCredentials: true,
+    });
+
+    return response.data[0];
 }

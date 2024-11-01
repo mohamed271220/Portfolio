@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaCode, FaCloud, FaUser } from 'react-icons/fa';
 
 const HomePage = () => {
@@ -19,7 +18,7 @@ const HomePage = () => {
             <section className="py-20 px-6 text-center">
                 <h2 className="text-4xl font-bold text-gray-800 dark:text-gray-200">About Me</h2>
                 <p className="mt-4 text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-                    I'm a dedicated developer with a passion for creating engaging and responsive websites. With a strong foundation in both front-end and back-end technologies, I strive to deliver seamless user experiences and robust functionality. My journey in web development began with a curiosity for how websites work, and over the years, it has evolved into a deep-seated passion for crafting digital solutions that not only meet but exceed client expectations.
+                    I&apos;m a dedicated developer with a passion for creating engaging and responsive websites. With a strong foundation in both front-end and back-end technologies, I strive to deliver seamless user experiences and robust functionality. My journey in web development began with a curiosity for how websites work, and over the years, it has evolved into a deep-seated passion for crafting digital solutions that not only meet but exceed client expectations.
                 </p>
             </section>
 

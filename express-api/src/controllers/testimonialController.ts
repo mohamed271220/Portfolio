@@ -40,7 +40,10 @@ export const addTestimonial = async (
   next: NextFunction
 ) => {
   try {
-    const newTestimonial = new Testimonial(req.body);
+    const newTestimonial = new Testimonial({
+      ...req.body,
+      profilePicture: req.body.profilePicture[0],
+    });
     await newTestimonial.save();
     res.status(201).json({ message: "Testimonial added", newTestimonial });
   } catch (error) {
@@ -57,7 +60,7 @@ export const updateTestimonial = async (
   try {
     const updatedTestimonial = await Testimonial.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      { ...req.body, profilePicture: req.body.profilePicture[0] },
       {
         new: true,
         useFindAndModify: false,

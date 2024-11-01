@@ -1,5 +1,5 @@
 // routes/blogRoutes.ts
-import express from "express";
+import express, { Request } from "express";
 import { check } from "express-validator";
 import {
   getBlogs,
@@ -33,6 +33,10 @@ router.post(
       .withMessage("Tags must be an array of strings"),
     handleValidationErrors,
   ],
+  (req:Request, res:any, next:any) => {
+    console.log("Request received:", req.body);
+    next();
+  },
   addBlog
 );
 

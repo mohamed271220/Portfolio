@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { getProjects, addProject, updateProject, deleteProject, getCategories } from '../api';
 import MediaUpload from '../components/Form/MediaUpload';

@@ -1,6 +1,6 @@
 import multer from "multer";
 import multerS3 from "multer-s3";
-import { S3Client } from "@aws-sdk/client-s3";
+import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import s3Client from "../config/aws-config";
 import { v4 as uuidv4 } from "uuid";
 import { Request } from "express";
@@ -37,6 +37,24 @@ const fileUpload = multer({
 
 export default fileUpload;
 
+export const uploadBase64ImageToS3 = async (
+  base64Data: string
+): Promise<string> => {
+  const buffer = Buffer.from(base64Data, "base64");
+  const key = `images/${uuidv4()}.png`; // Generate a unique file name
+
+  const uploadParams = {
+    Bucket: process.env.AWS_BUCKET_NAME!,
+    Key: key,
+    Body: buffer,
+    ContentEncoding: "base64",
+    ContentType: "image/png",
+  };
+
+  await s3Client.send(new PutObjectCommand(uploadParams));
+
+  return `https://${process.env.AWS_BUCKET_NAME}.s3.amazonaws.com/${key}`;
+};
 /**
 test file
 curl -X POST http://localhost:3000/api/v1/media/upload \

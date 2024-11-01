@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { FaTrash, FaUpload } from 'react-icons/fa';
 
-const MediaUpload = ({ mediaLinks, setMediaLinks, uploadMode }) => {
+const MediaUpload = ({ mediaLinks = [], setMediaLinks, uploadMode }) => {
     const [uploading, setUploading] = useState(false);
     const [uploadError, setUploadError] = useState(null);
     const [isDragActive, setIsDragActive] = useState(false);
@@ -86,11 +86,7 @@ const MediaUpload = ({ mediaLinks, setMediaLinks, uploadMode }) => {
             <div className="flex flex-wrap mt-4 space-x-2">
                 {mediaLinks && mediaLinks.map((link, index) => (
                     <div key={index} className="relative">
-                        {link.endsWith('.svg') ? (
-                            <img src={link} alt="Uploaded SVG" className="w-24 h-24 object-cover rounded" />
-                        ) : (
                             <img src={link} alt="Uploaded Image" className="w-24 h-24 object-cover rounded" />
-                        )}
                         <button
                             type="button"
                             onClick={() => handleRemoveLink(index)}

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { useDispatch } from 'react-redux';
 import { getUserDetails, updateUserDetails } from '../api';
 import MediaUpload from '../components/Form/MediaUpload';
 import Button from '../components/Buttons/Button';
@@ -9,7 +8,6 @@ import SkeletonLoader from '../components/Loading/LoadingSkeletons';
 import { toast } from 'react-toastify';
 
 const UserDetails = () => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',

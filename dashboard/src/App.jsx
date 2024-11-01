@@ -11,6 +11,9 @@ import CertificationsPage from './pages/CertificationsPage';
 import SkillsPage from './pages/SkillPage';
 import CategoriesPage from './pages/ProjectCategories';
 import ProjectsPage from './pages/ProjectPage';
+import TestimonialsPage from './pages/Testimonial';
+import BlogPostPage from './pages/BlogPage';
+import ExperiencePage from './pages/ExperiencePage';
 
 
 
@@ -39,6 +42,12 @@ const router = createBrowserRouter([
         </ProtectedRoute>
       },
       {
+        path: "/experiences",
+        element: <ProtectedRoute>
+          <ExperiencePage />
+        </ProtectedRoute>
+      },
+      {
         path: "/certifications",
         element: <ProtectedRoute>
           <CertificationsPage />
@@ -60,7 +69,20 @@ const router = createBrowserRouter([
         element: <ProtectedRoute>
           <ProjectsPage />
         </ProtectedRoute>
-      }
+      },
+      {
+        path: "/testimonials",
+        element: <ProtectedRoute>
+          <TestimonialsPage />
+        </ProtectedRoute>
+      },
+      {
+        path: "/blog",
+        element: <ProtectedRoute>
+          <BlogPostPage />
+        </ProtectedRoute>
+      },
+  
     ]
   }
 ])
