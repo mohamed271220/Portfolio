@@ -1,4 +1,4 @@
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { getProjects, addProject, updateProject, deleteProject, getCategories } from '../api';
 import MediaUpload from '../components/Form/MediaUpload';
@@ -147,8 +147,8 @@ const ProjectsPage = () => {
             <th className="px-4 py-2">Title</th>
             <th className="px-4 py-2">Images</th>
             <th className="px-4 py-2">Technologies</th>
-            <th className="px-4 py-2">Link</th>
             <th className="px-4 py-2">github</th>
+            <th className="px-4 py-2">Link</th>
             <th className="px-4 py-2">Description</th>
             <th className="px-4 py-2">Category</th>
             <th className="px-4 py-2">Actions</th>
