@@ -9,8 +9,8 @@ const Background = () => {
     const context = canvas.getContext('2d');
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = 900;
+      canvas.height = 1800;
       drawStars(); // Redraw stars after resizing
     };
 

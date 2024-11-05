@@ -1,21 +1,31 @@
-import Head from 'next/head';
-import Background from '@/components/Background';
-import Moon from '@/components/Moon';
-import ShootingStars from '@/components/ShootingStars';
+import ExperiencesSection from '@/components/ExperiencesSection';
+import { HeroSection } from '@/components/HeroSection';
+import Navbar from '@/components/Navbar';
+import Projects from '@/components/Projects';
+import Skills from '@/components/Skills';
+import { fetchData } from '@/lib/data';
 
-export default function Home() {
+export const metadata = {
+  title: "Mohamed Magdy",
+  description: "A personal portfolio for the full-stack developer Mohamed Magdy",
+  favicon: "/spaceman.png",
+}
+
+export default async function Home() {
+
+  const data = await fetchData();
+  console.log(data.projects);
+  console.log(data.categories);
+
+
+
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden">
-      <Head>
-        <title>My Portfolio</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Background />
-      <ShootingStars />
-      <div className="absolute inset-0 flex items-center justify-center">
-        {/* <Moon /> */}
-      </div>
-      {/* Other components like Hero, etc. */}
-    </div>
+    <>
+      <Navbar />
+      <HeroSection name={data.me.name} profilePicture={data.me.profilePicture} currentPosition={data.me.currentPosition} resume={data.me.resume} />
+      <ExperiencesSection experiencesData={data.experiences} />
+      <Skills skills={data.skills} />
+      <Projects projects={data.projects} categories={data.categories} />
+    </>
   );
 }

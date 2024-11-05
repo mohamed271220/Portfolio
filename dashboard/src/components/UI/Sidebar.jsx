@@ -29,7 +29,7 @@ const Sidebar = ({ isOpen }) => {
 
     return (
         <aside
-            className={`transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} w-64 p-4 bg-gradient-to-b fixed h-full`}
+            className={`transition-transform overflow-auto pb-24 duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} w-64 p-4 bg-gradient-to-b fixed h-full`}
         >
 
             <nav>

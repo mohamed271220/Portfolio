@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Import pixelated fonts */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");

@@ -13,8 +13,8 @@ import { validateCategory, validateCategoryId } from '../middleware/validators/c
 
 const router = express.Router();
 
-router.get('/', authenticateToken, getAllCategories);
-router.get('/:id', authenticateToken, validateCategoryId, getCategoryById);
+router.get('/', getAllCategories);
+router.get('/:id', validateCategoryId, getCategoryById);
 router.post('/', authenticateToken, validateCategory, createCategory);
 router.put('/:id', authenticateToken, validateCategoryId, validateCategory, updateCategory);
 router.delete('/:id', authenticateToken, validateCategoryId, deleteCategory);
