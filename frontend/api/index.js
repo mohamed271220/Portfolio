@@ -8,6 +8,10 @@ export const getBlogPosts = async () => {
     const response = await api.get('/blogs');
     return response.data;
 }
+export const getBlogPost = async (id) => {
+    const response = await api.get(`/blogs/${id}`);
+    return response.data;
+}
 export const getMe = async () => {
     const response = await api.get('/me');
     return response.data;

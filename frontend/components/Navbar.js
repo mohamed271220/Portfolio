@@ -1,24 +1,42 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link'; // Import Link from next
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
+    // Toggle dropdown menu on mobile
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
 
     return (
-        <nav className="flex items-center justify-between p-4 bg-gray-800 bg-opacity-50 text-white  relative">
-            <div className="text-2xl font-bold text-green-600">SPECTER</div>
+        <nav className="flex items-center z-999 justify-between p-4 bg-gray-800 bg-opacity-50 text-white relative">
+            <Link href={'/'} className="text-2xl font-bold text-green-600">SPECTER</Link>
             <div className="hidden md:flex space-x-4">
-                <a href="#projects" className="hover:underline hover:text-green-500">Projects</a>
-                <a href="#skills" className="hover:underline hover:text-green-500">Skills</a>
-                <a href="#educations" className="hover:underline hover:text-green-500">Educations</a>
-                <a href="#experiences" className="hover:underline hover:text-green-500">Experiences</a>
-                <a href="#certifications" className="hover:underline hover:text-green-500">Certifications</a>
-                <a href="#testimonials" className="hover:underline hover:text-green-500">Testimonials</a>
-                <a href="#blog" className="hover:underline hover:text-green-500">Blog</a>
+                <Link href="/#experiences">
+                    <p className='hover:text-green-500 hover:underline'
+                    >Experiences</p>
+                </Link>
+                <Link href="/#projects">
+                    <p className='w-500'
+                    >Projects</p>
+                </Link>
+                <Link href="/#skills">
+                    <p className='hover:text-green-500 hover:underline' >Skills</p>
+                </Link>
+                <Link href="/#education">
+                    <p className='hover:text-green-500 hover:underline' >Educations</p>
+                </Link>
+                <Link href="/#certifications">
+                    <p className='hover:text-green-500 hover:underline' >Certifications</p>
+                </Link>
+                {/* <Link  href="/#testimonials">
+                    <p  className='hover:text-green-500 >Testimonials</p>
+                </Link> */}
+                <Link href="/blog">
+                    <p className='hover:text-green-500 hover:underline'>Blog</p>
+                </Link>
             </div>
             <div className="md:hidden">
                 <button onClick={toggleDropdown} className="focus:outline-none">
@@ -28,14 +46,28 @@ const Navbar = () => {
                     </svg>
                 </button>
                 {isOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-gray-800 bg-opacity-50 text-white rounded-md shadow-lg z-20">
-                        <a href="#projects" className="block px-4 py-2 hover:underline hover:text-green-500">Projects</a>
-                        <a href="#skills" className="block px-4 py-2 hover:underline hover:text-green-500">Skills</a>
-                        <a href="#educations" className="block px-4 py-2 hover:underline hover:text-green-500">Educations</a>
-                        <a href="#experiences" className="block px-4 py-2 hover:underline hover:text-green-500">Experiences</a>
-                        <a href="#certifications" className="block px-4 py-2 hover:underline hover:text-green-500">Certifications</a>
-                        <a href="#testimonials" className="block px-4 py-2 hover:underline hover:text-green-500">Testimonials</a>
-                        <a href="#blog" className="block px-4 py-2 hover:underline hover:text-green-500">Blog</a>
+                    <div className="absolute right-0 mt-2 w-48 bg-gray-800 bg-opacity-100 text-white rounded-md shadow-lg z-20">
+                        <Link href="/#projects">
+                            <p className="block px-4 py-2 hover:underline hover:text-green-500">Projects</p>
+                        </Link>
+                        <Link href="/#skills">
+                            <p className="block px-4 py-2 hover:underline hover:text-green-500">Skills</p>
+                        </Link>
+                        <Link href="/#educations">
+                            <p className="block px-4 py-2 hover:underline hover:text-green-500">Educations</p>
+                        </Link>
+                        <Link href="/#experiences">
+                            <p className="block px-4 py-2 hover:underline hover:text-green-500">Experiences</p>
+                        </Link>
+                        <Link href="/#certifications">
+                            <p className="block px-4 py-2 hover:underline hover:text-green-500">Certifications</p>
+                        </Link>
+                        {/* <Link href="/#testimonials">
+                            <p className="block px-4 py-2 hover:underline hover:text-green-500">Testimonials</p>
+                        </Link> */}
+                        <Link href="/blog">
+                            <p className="block px-4 py-2 hover:underline hover:text-green-500">Blog</p>
+                        </Link>
                     </div>
                 )}
             </div>

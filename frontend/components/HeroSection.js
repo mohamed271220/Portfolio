@@ -1,5 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
+import spaceman from "@/assets/spaceman.png"
+import Image from 'next/image';
 
 export const HeroSection = ({ name, currentPosition, profilePicture, resume, bio = "" }) => {
 
@@ -52,7 +54,7 @@ export const HeroSection = ({ name, currentPosition, profilePicture, resume, bio
 
     return (
         <div className="flex flex-col md:flex-row items-center justify-center h-[90vh] text-center bg-black text-white space-x-4">
-            <img src={'/spaceman.png'} alt={`${name}'s Profile`} className=" w-32 h-32" />
+            <Image src={spaceman.src} alt={`${name}'s Profile`} className=" w-32 h-32" width={800} height={800} priority={true} />
             <div className="flex flex-col items-center">
                 <h1 className="text-4xl font-bold mt-4">{`Hello, I'm ${name}`}</h1>
                 <p className="text-lg text-green-600">{text}</p>

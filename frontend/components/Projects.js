@@ -9,10 +9,10 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 const Project = ({ project, isSelected, onClick }) => {
     return (
         <div
-            className={`relative border-2 border-dotted border-green-600 bg-black p-4 rounded-lg shadow-md transition duration-300 retro-card ${isSelected ? 'w-full col-span-3' : ''}`}
+            className={`relative border-2 border-dotted border-green-600 bg-black p-4 rounded-lg shadow-md transition duration-300 retro-card  ${isSelected ? 'w-full col-span-3' : ''}`}
             onClick={onClick}
         >
-            <div className="flex items-center mb-2">
+            <div className="flex cursor-pointer items-center mb-2">
                 <h3 className="text-2xl font-bold text-green-50 retro-text">{project.title}</h3>
             </div>
             {isSelected ? (
@@ -39,7 +39,7 @@ const Project = ({ project, isSelected, onClick }) => {
                     </a>
                 </div>
             ) : (
-                <Image src={project.images[0]} alt={project.title} className="w-full h-auto" width={800} height={600} />
+                <Image src={project.images[0]} alt={project.title} className="w-full h-auto cursor-pointer" width={800} height={600} />
             )}
         </div>
     );
@@ -54,7 +54,7 @@ const Projects = ({ projects, categories }) => {
         : projects.filter(project => project.category.name === selectedCategory);
 
     return (
-        <section id="projects" className="py-10 bg-opacity-10 z-50 bg-black">
+        <section id="projects" className="py-10  bg-black">
             <h2 className="text-3xl font-bold text-center bg-green-600 mb-6 retro-text">Projects</h2>
             <div className="container mx-auto p-4">
                 <div className="flex justify-center mb-6 z-50 relative">

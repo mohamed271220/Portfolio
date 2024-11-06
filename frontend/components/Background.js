@@ -9,7 +9,7 @@ const Background = () => {
     const context = canvas.getContext('2d');
 
     const resize = () => {
-      canvas.width = 900;
+      canvas.width = window.innerWidth;
       canvas.height = 1800;
       drawStars(); // Redraw stars after resizing
     };
@@ -20,7 +20,7 @@ const Background = () => {
         const star = {
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          radius: Math.random() * 1
+          radius: 0.3
         };
         starsRef.current.push(star);
       }
@@ -44,7 +44,7 @@ const Background = () => {
     return () => window.removeEventListener('resize', resize);
   }, []);
 
-  return <canvas id="stars" className="absolute top-0 left-0 w-full h-full"></canvas>;
+  return <canvas id="stars" className="absolute z-[-1] top-0 left-0 w-full h-full"></canvas>;
 };
 
 export default Background;

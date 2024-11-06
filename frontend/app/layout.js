@@ -3,6 +3,9 @@ import { Pixelify_Sans } from 'next/font/google';
 import "./globals.css";
 import Background from "@/components/Background";
 import ShootingStars from "@/components/ShootingStars";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,7 +22,6 @@ const pixelify = Pixelify_Sans({ subsets: ['latin'] });
 export const metadata = {
   title: "Specter",
   description: "A personal portfolio for the full-stack developer Mohamed Magdy",
-  favicon: "/spaceman.png",
 };
 
 export default function RootLayout({ children }) {
@@ -28,7 +30,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${pixelify.className} antialiased`}
       >
-        <div className="relative min-h-screen bg-black overflow-hidden">
+        <div className="relative z-0 min-h-screen bg-black overflow-hidden">
+          <Navbar />
           <Background />
           <ShootingStars />
           {children}

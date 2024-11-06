@@ -1,17 +1,18 @@
 "use client";
 import React from 'react';
 import Image from 'next/image';
+import moon from '@/assets/moon.png'
 
 const Moon = () => {
   return (
     <div className="relative flex items-center justify-center w-full h-full">
       <div className="moon-container">
         <Image
-          src="/moon.png" // Ensure you have a pixelated moon image at this path
+          src={moon.src}
           alt="Pixelated Moon"
           className="pixelated-moon"
-          width={150} // Adjust width as needed
-          height={150} // Adjust height as needed
+          width={250}
+          height={250}
         />
       </div>
     </div>

@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const Skills = ({ skills }) => {
     const variants = {
@@ -24,7 +25,7 @@ const Skills = ({ skills }) => {
                             transition={{ duration: 0.5 }}
                         >
                             <div className="flex items-center mb-2">
-                                <img src={skill.logo} alt={`${skill.name} logo`} className="w-12 h-12 mr-4 bg-green-200 rounded-full p-1 retro-img" />
+                                <Image src={skill.logo} alt={`${skill.name} logo`} className="w-12 h-12 mr-4 bg-green-200 rounded-full p-1 retro-img" width={800} height={800} />
                                 <h3 className="text-2xl font-bold text-green-50 retro-text">{skill.name}</h3>
                             </div>
                             <p className="text-green-300 mb-2 retro-text">Level: {skill.level}</p>

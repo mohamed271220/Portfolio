@@ -11,7 +11,7 @@ const ShootingStars = () => {
 
     const resize = () => {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.height = 1800;
       drawStars();
     };
 
@@ -20,7 +20,7 @@ const ShootingStars = () => {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         size: Math.random() * 1,
-        speed: Math.random() * 0.5 + 0.2,
+        speed: Math.random() * 0.001 + 0.2,
       };
       starsRef.current.push(star);
     };
@@ -66,7 +66,7 @@ const ShootingStars = () => {
     });
   };
 
-  return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full"></canvas>;
+  return <canvas ref={canvasRef} className="absolute z-[-1] top-0 left-0 w-full h-full"></canvas>;
 };
 
 export default ShootingStars;
