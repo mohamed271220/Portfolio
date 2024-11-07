@@ -20,7 +20,7 @@ app.use(morgan("dev"));
 app.use(helmet());
 app.use(
   cors({
-    origin: "https://portfolio-1hqv4cf9j-mohamed271220s-projects.vercel.app",
+    origin: process.env.CLIENT_URL,
     optionsSuccessStatus: 200,
     credentials: true,
   })
