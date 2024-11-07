@@ -20,7 +20,7 @@ app.use(morgan("dev"));
 app.use(helmet());
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: "*",
     optionsSuccessStatus: 200,
     credentials: true,
   })

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const api = axios.create({
     // backend link from .env.local
-    baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+    baseURL: "https://express-gucsxcyev-mohamed271220s-projects.vercel.app/api/v1",
     withCredentials: true,
 });
 export const getBlogPosts = async () => {
