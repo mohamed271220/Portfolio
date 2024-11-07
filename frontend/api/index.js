@@ -2,12 +2,12 @@ import axios from 'axios';
 
 const api = axios.create({
     // backend link from .env.local
-    baseURL: "https://express-73xwr6i9t-mohamed271220s-projects.vercel.app/api/v1",
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
     withCredentials: true,
 });
 export const getBlogPosts = async () => {
     try {
-        const response = await api.get('/blogs');
+        const response = await api.get('/api/v1/blogs');
         return response.data;
     }
     catch (error) {
@@ -16,40 +16,40 @@ export const getBlogPosts = async () => {
     }
 }
 export const getBlogPost = async (id) => {
-    const response = await api.get(`/blogs/${id}`);
+    const response = await api.get(`/api/v1/blogs/${id}`);
     return response.data;
 }
 export const getMe = async () => {
-    const response = await api.get('/me');
+    const response = await api.get('/api/v1/me');
     return response.data;
 }
 export const getProjects = async () => {
-    const response = await api.get('/projects');
+    const response = await api.get('/api/v1/projects');
     return response.data;
 
 }
 export const getSkills = async () => {
-    const response = await api.get('/skills');
+    const response = await api.get('/api/v1/skills');
     return response.data;
 }
 export const getEducations = async () => {
-    const response = await api.get('/educations');
+    const response = await api.get('/api/v1/educations');
     return response.data;
 }
 export const getExperiences = async () => {
-    const response = await api.get('/experiences');
+    const response = await api.get('/api/v1/experiences');
     return response.data;
 }
 export const getCertifications = async () => {
-    const response = await api.get('/certifications');
+    const response = await api.get('/api/v1/certifications');
     return response.data;
 }
 export const getTestimonials = async () => {
-    const response = await api.get('/testimonials');
+    const response = await api.get('/api/v1/testimonials');
     return response.data;
 }
 export const getCategories = async () => {
-    const response = await api.get('/categories');
+    const response = await api.get('/api/v1/categories');
     return response.data;
 }
 
