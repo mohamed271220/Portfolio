@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const api = axios.create({
-        // backend link from .env.local
-        baseURL: "https://express-gucsxcyev-mohamed271220s-projects.vercel.app/api/v1",
-        withCredentials: true,
-    });
+    // backend link from .env.local
+    baseURL: "https://express-73xwr6i9t-mohamed271220s-projects.vercel.app/api/v1",
+    withCredentials: true,
+});
 export const getBlogPosts = async () => {
     try {
         const response = await api.get('/blogs');
