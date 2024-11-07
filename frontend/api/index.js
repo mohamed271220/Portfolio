@@ -1,13 +1,19 @@
 import axios from 'axios';
 
 const api = axios.create({
-    // backend link from .env.local
-    baseURL: "https://express-gucsxcyev-mohamed271220s-projects.vercel.app/api/v1",
-    withCredentials: true,
-});
+        // backend link from .env.local
+        baseURL: "https://express-gucsxcyev-mohamed271220s-projects.vercel.app/api/v1",
+        withCredentials: true,
+    });
 export const getBlogPosts = async () => {
-    const response = await api.get('/blogs');
-    return response.data;
+    try {
+        const response = await api.get('/blogs');
+        return response.data;
+    }
+    catch (error) {
+        console.error('Error fetching blog posts:', error);
+        throw error;
+    }
 }
 export const getBlogPost = async (id) => {
     const response = await api.get(`/blogs/${id}`);

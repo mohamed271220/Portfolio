@@ -15,20 +15,25 @@ export const metadata = {
 }
 
 export default async function Home() {
-  const data = await fetchData();
-  if (!data) {
+  try {
+    const data = await fetchData();
+    if (!data) {
+      notFound();
+    }
+    return (
+      <>
+        <HeroSection name={data.me.name} profilePicture={data.me.profilePicture} currentPosition={data.me.currentPosition} resume={data.me.resume} />
+        <ExperiencesSection experiencesData={data.experiences} />
+        <Projects projects={data.projects} categories={data.categories} />
+        <Skills skills={data.skills} />
+        <EducationSection educationData={data.educations} type="education" />
+        <Certifications certifications={data.certifications} />
+        <Footer data={data.me} />
+      </>
+    );
+  } catch (error) {
+    console.error('Error loading blog posts:', error);
     notFound();
   }
-  
-  return (
-    <>
-      <HeroSection name={data.me.name} profilePicture={data.me.profilePicture} currentPosition={data.me.currentPosition} resume={data.me.resume} />
-      <ExperiencesSection experiencesData={data.experiences} />
-      <Projects projects={data.projects} categories={data.categories} />
-      <Skills skills={data.skills} />
-      <EducationSection educationData={data.educations} type="education" />
-      <Certifications certifications={data.certifications} />
-      <Footer data={data.me} />
-    </>
-  );
+
 }
