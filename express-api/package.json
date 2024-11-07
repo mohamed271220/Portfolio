@@ -6,6 +6,7 @@
   "scripts": {
     "build-ts": "tsc",
     "build": " npm run build-ts",
+    "vercel-build": "echo launching",
     "debug": "npm run build && npm run watch-debug",
     "serve-debug": "nodemon --inspect dist/index.js",
     "serve": "node dist/index.js",

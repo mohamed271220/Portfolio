@@ -97,3 +97,4 @@ build/
 .DS_Store
 
 # End of list
+.vercel
