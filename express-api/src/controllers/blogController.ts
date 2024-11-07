@@ -7,7 +7,8 @@ import { uploadBase64ImageToS3 } from "../middleware/file-upload";
 
 // Helper function to replace base64 images with S3 URLs
 const replaceBase64Images = async (content: string) => {
-  const base64Regex = /<img\s+src="data:image\/(png|jpeg|jpg);base64,([^"]+)"[^>]*>/g;
+  const base64Regex =
+    /<img\s+src="data:image\/(png|jpeg|jpg);base64,([^"]+)"[^>]*>/g;
   let match;
   let updatedContent = content;
 
@@ -60,10 +61,14 @@ export const addBlog = async (
   next: NextFunction
 ) => {
   try {
-    console.log("req.body", req.body);
-    
+    // console.log("req.body", req.body);
+
+    // Replace base64 images with S3 URLs
+    const contentWithS3Urls = await replaceBase64Images(req.body.content);
+    console.log("Content with S3 URLs:", contentWithS3Urls);
+
     // Sanitize the content
-    const sanitizedContent = sanitizeHtml(req.body.content, {
+    const sanitizedContent = sanitizeHtml(contentWithS3Urls, {
       allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
       allowedAttributes: {
         ...sanitizeHtml.defaults.allowedAttributes,
@@ -72,13 +77,14 @@ export const addBlog = async (
       selfClosing: ["img"], // Allow img tags to be self-closing
     });
 
-    // Replace base64 images with S3 URLs
-    const contentWithS3Urls = await replaceBase64Images(sanitizedContent);
+    console.log(sanitizedContent);
+
+    // console.log(req.files);
 
     // Create the blog object
     const newBlog = {
       author: req.body.author,
-      content: contentWithS3Urls,
+      content: sanitizedContent,
       tags: req.body.tags,
       title: req.body.title,
     };
@@ -89,7 +95,8 @@ export const addBlog = async (
     res.status(201).json(savedBlog);
   } catch (error) {
     next(error);
-  }}
+  }
+};
 // Update a blog by ID
 export const updateBlog = async (
   req: Request,
@@ -97,13 +104,21 @@ export const updateBlog = async (
   next: NextFunction
 ) => {
   try {
-    // Sanitize content to prevent injection attacks
-    const sanitizedContent = sanitizeHtml(req.body.content);
+    const blog = await Blog.findById(req.params.id);
+    if (!blog) throw new CustomError("Blog not found", 404);
 
-    // const contentWithS3Urls = replaceBase64Images(
-    //   sanitizedContent,
-    //   req.files as Express.Multer.File[]
-    // );
+    // Replace base64 images with S3 URLs
+    if (req.body.content && req.body.content !== blog.content) {
+      req.body.content = await replaceBase64Images(req.body.content);
+      req.body.content = sanitizeHtml(req.body.content, {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+        allowedAttributes: {
+          ...sanitizeHtml.defaults.allowedAttributes,
+          img: ["src", "alt", "title"], // Allow img tag attributes
+        },
+        selfClosing: ["img"], // Allow img tags to be self-closing
+      });
+    }
 
     const updatedBlog = await Blog.findByIdAndUpdate(
       req.params.id,

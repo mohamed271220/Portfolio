@@ -6,6 +6,7 @@ import { HeroSection } from '@/components/HeroSection';
 import Projects from '@/components/Projects';
 import Skills from '@/components/Skills';
 import { fetchData } from '@/lib/data';
+import { notFound } from 'next/navigation';
 
 
 export const metadata = {
@@ -15,6 +16,10 @@ export const metadata = {
 
 export default async function Home() {
   const data = await fetchData();
+  if (!data) {
+    notFound();
+  }
+  
   return (
     <>
       <HeroSection name={data.me.name} profilePicture={data.me.profilePicture} currentPosition={data.me.currentPosition} resume={data.me.resume} />

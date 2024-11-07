@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Skills = ({ skills }) => {
     const variants = {
@@ -29,14 +30,14 @@ const Skills = ({ skills }) => {
                                 <h3 className="text-2xl font-bold text-green-50 retro-text">{skill.name}</h3>
                             </div>
                             <p className="text-green-300 mb-2 retro-text">Level: {skill.level}</p>
-                            <a
+                            <Link
                                 href={skill.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-green-400 underline retro-link"
                             >
                                 Learn more
-                            </a>
+                            </Link>
                         </motion.div>
                     ))}
                 </div>

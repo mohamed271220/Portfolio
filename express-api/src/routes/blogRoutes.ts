@@ -10,6 +10,7 @@ import {
 } from "../controllers/blogController";
 import { authenticateToken } from "../middleware/auth.middleware";
 import { handleValidationErrors } from "../middleware/validators/reportErrors";
+import fileUpload from "../middleware/file-upload";
 
 const router = express.Router();
 
@@ -33,10 +34,11 @@ router.post(
       .withMessage("Tags must be an array of strings"),
     handleValidationErrors,
   ],
-  (req:Request, res:any, next:any) => {
-    console.log("Request received:", req.body);
-    next();
-  },
+  // (req: Request, res: any, next: any) => {
+  //   console.log("Request received:", req.body);
+  //   next();
+  // },
+  // fileUpload.array("images", 10),
   addBlog
 );
 
