@@ -20,9 +20,9 @@ app.use(morgan("dev"));
 app.use(helmet());
 app.use(
   cors({
-    origin: "*",
+    origin: "https://portfolio-1hqv4cf9j-mohamed271220s-projects.vercel.app",
     optionsSuccessStatus: 200,
-    credentials: true, // 
+    credentials: true,
   })
 );
 app.use(cookieParser());
