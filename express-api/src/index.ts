@@ -18,6 +18,7 @@ const app = express();
 app.use(express.json({ limit: "10mb" }));
 app.use(morgan("dev"));
 app.use(helmet());
+// origin:  "http://localhost:5173",
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
