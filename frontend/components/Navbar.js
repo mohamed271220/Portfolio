@@ -26,7 +26,7 @@ const Navbar = () => {
                     <p className='hover:text-green-500 hover:underline' >Skills</p>
                 </Link>
                 <Link href="/#education">
-                    <p className='hover:text-green-500 hover:underline' >Educations</p>
+                    <p className='hover:text-green-500 hover:underline' >Education</p>
                 </Link>
                 <Link href="/#certifications">
                     <p className='hover:text-green-500 hover:underline' >Certifications</p>
