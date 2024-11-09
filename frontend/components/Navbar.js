@@ -19,7 +19,7 @@ const Navbar = () => {
                     >Experiences</p>
                 </Link>
                 <Link href="/#projects">
-                    <p className='w-500'
+                    <p className='hover:text-green-500 hover:underline'
                     >Projects</p>
                 </Link>
                 <Link href="/#skills">

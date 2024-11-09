@@ -53,7 +53,7 @@ export const HeroSection = ({ name, currentPosition, profilePicture, resume, bio
     };
 
     return (
-        <div className="flex flex-col md:flex-row items-center justify-center h-[90vh] text-center bg-black text-white space-x-4">
+        <div className="flex flex-col md:flex-row items-center justify-center h-[90vh] text-center  text-white space-x-4">
             <Image src={spaceman.src} alt={`${name}'s Profile`} className=" w-32 h-32" width={800} height={800} priority={true} />
             <div className="flex flex-col items-center">
                 <h1 className="text-4xl font-bold mt-4">{`Hello, I'm ${name}`}</h1>
