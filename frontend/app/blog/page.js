@@ -7,7 +7,9 @@ export const metadata = {
 };
 
 async function fetchBlogPosts() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/blogs`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/blogs`, {
+    cache: 'no-store',
+  });
 
   if (!res.ok) {
     throw new Error('Failed to fetch blog posts');
