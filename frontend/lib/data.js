@@ -13,11 +13,11 @@ import {
 export const fetchData = async () => {
     try {
         const [me, projects, skills, educations, experiences, certifications, testimonials, categories] = await Promise.all([
-            getMe(),
-            getProjects(),
+            getMe({ cache: 'no-store' }),
+            getProjects({ cache: 'no-store' }),
             getSkills(),
             getEducations(),
-            getExperiences(),
+            getExperiences({ cache: 'no-store' }),
             getCertifications(),
             getTestimonials(),
             getCategories(),
