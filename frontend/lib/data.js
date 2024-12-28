@@ -23,6 +23,7 @@ export const fetchData = async () => {
             getCategories(),
 
         ]);
+        
         return {
             me,
             projects,
