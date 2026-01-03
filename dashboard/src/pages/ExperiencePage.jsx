@@ -17,6 +17,7 @@ const ExperiencePage = () => {
     companyName: '',
     from: '',
     to: '',
+    current: false,
     link: '',
     description: '',
   });
@@ -34,7 +35,7 @@ const ExperiencePage = () => {
   useEffect(() => {
     if (experienceData) {
       setExperiences(
-        experienceData.map(exp => ({ ...exp, logo: exp.logo || 'https://via.placeholder.com/150' }))
+        experienceData.map(exp => ({ ...exp, logo: exp.logo || 'https://via.placeholder.com/150', current: exp.current || false }))
       );
     }
   }, [experienceData]);
@@ -51,6 +52,7 @@ const ExperiencePage = () => {
         companyName: '',
         from: '',
         to: '',
+        current: false,
         link: '',
         description: '',
       });
@@ -84,8 +86,9 @@ const ExperiencePage = () => {
   const handleEdit = (experience) => {
     setCurrentExperience({
       ...experience,
-      from: experience.from.split('T')[0],
-      to: experience.to.split('T')[0],
+      from: experience.from ? experience.from.split('T')[0] : '',
+      to: experience.to ? experience.to.split('T')[0] : '',
+      current: experience.current || false,
     });
     setCurrentExperienceLogo([experience.logo]);
     setShowEditModal(true);
@@ -97,13 +100,25 @@ const ExperiencePage = () => {
   };
 
   const handleAddChange = (e) => {
-    const { name, value } = e.target;
-    setNewExperience(prevState => ({ ...prevState, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setNewExperience(prevState => {
+        const newState = { ...prevState, [name]: type === 'checkbox' ? checked : value };
+        if (name === 'current' && checked) {
+            newState.to = '';
+        }
+        return newState;
+    });
   };
 
   const handleEditChange = (e) => {
-    const { name, value } = e.target;
-    setCurrentExperience(prevState => ({ ...prevState, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setCurrentExperience(prevState => {
+        const newState = { ...prevState, [name]: type === 'checkbox' ? checked : value };
+        if (name === 'current' && checked) {
+            newState.to = '';
+        }
+        return newState;
+    });
   };
 
   const handleAddSubmit = (e) => {
@@ -153,8 +168,8 @@ const ExperiencePage = () => {
               <td className="border px-4 py-2">
                 <img src={exp.logo} alt="Logo" className="w-10 h-10" />
               </td>
-              <td className="border px-4 py-2">{exp.from}</td>
-              <td className="border px-4 py-2">{exp.to}</td>
+              <td className="border px-4 py-2">{exp.from ? exp.from.split('T')[0] : ''}</td>
+              <td className="border px-4 py-2">{exp.current ? 'Present' : (exp.to ? exp.to.split('T')[0] : '')}</td>
               <td className="border px-4 py-2">
                 <a href={exp.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                   <FaEye />
@@ -198,17 +213,31 @@ const ExperiencePage = () => {
             className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-700 dark:text-gray-300"
           />
         </div>
-        <div>
-          <label className="block text-gray-700 dark:text-gray-300 mb-2">To</label>
-          <input
-            type="date"
-            name="to"
-            value={newExperience.to}
-            onChange={handleAddChange}
-            required
-            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-700 dark:text-gray-300"
-          />
+        <div className="flex items-center">
+            <input
+                type="checkbox"
+                name="current"
+                id="addCurrent"
+                checked={newExperience.current}
+                onChange={handleAddChange}
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label htmlFor="addCurrent" className="ml-2 text-gray-700 dark:text-gray-300">I currently work here</label>
         </div>
+
+        {!newExperience.current && (
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 mb-2">To</label>
+              <input
+                type="date"
+                name="to"
+                value={newExperience.to}
+                onChange={handleAddChange}
+                required={!newExperience.current}
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-700 dark:text-gray-300"
+              />
+            </div>
+        )}
         <div>
           <label className="block text-gray-700 dark:text-gray-300 mb-2">Link</label>
           <input
@@ -263,17 +292,31 @@ const ExperiencePage = () => {
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-700 dark:text-gray-300"
             />
           </div>
-          <div>
-            <label className="block text-gray-700 dark:text-gray-300 mb-2">To</label>
+          <div className="flex items-center">
             <input
-              type="date"
-              name="to"
-              value={currentExperience.to}
-              onChange={handleEditChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-700 dark:text-gray-300"
+                type="checkbox"
+                name="current"
+                id="editCurrent"
+                checked={currentExperience.current}
+                onChange={handleEditChange}
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             />
+            <label htmlFor="editCurrent" className="ml-2 text-gray-700 dark:text-gray-300">I currently work here</label>
           </div>
+
+          {!currentExperience.current && (
+              <div>
+                <label className="block text-gray-700 dark:text-gray-300 mb-2">To</label>
+                <input
+                  type="date"
+                  name="to"
+                  value={currentExperience.to}
+                  onChange={handleEditChange}
+                  required={!currentExperience.current}
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-700 dark:text-gray-300"
+                />
+              </div>
+          )}
           <div>
             <label className="block text-gray-700 dark:text-gray-300 mb-2">Link</label>
             <input

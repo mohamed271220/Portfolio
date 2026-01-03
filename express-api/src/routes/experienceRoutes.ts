@@ -23,9 +23,14 @@ router.post(
     check("from")
       .isDate()
       .withMessage("From date is required and must be a valid date"),
+    check("current").optional().isBoolean(),
     check("to")
-      .isDate()
-      .withMessage("To date is required and must be a valid date"),
+      .custom((value, { req }) => {
+        if (req.body.current === true || req.body.current === "true")
+          return true;
+        return !isNaN(Date.parse(value));
+      })
+      .withMessage("To date is required unless current is true"),
     check("description").optional().isString(),
     check("link").optional().isURL().withMessage("Link must be a valid URL"),
     handleValidationErrors,

@@ -5,8 +5,8 @@ export const uploadFiles = (req: Request, res: Response) => {
     return res.status(400).send("No files uploaded.");
   }
 
-  const uploadedFiles = (req.files as Express.MulterS3.File[]).map(
-    (file) => file.location
+  const uploadedFiles = (req.files as Express.Multer.File[]).map(
+    (file) => file.path
   );
 
   res.status(200).send(uploadedFiles);

@@ -3,24 +3,40 @@ import Blog, { IBlog } from "../models/Blog";
 import { validationResult } from "express-validator";
 import { CustomError } from "../utils/CustomError";
 import sanitizeHtml from "sanitize-html";
-import { uploadBase64ImageToS3 } from "../middleware/file-upload";
+import { uploadBase64Image } from "../middleware/file-upload";
 
-// Helper function to replace base64 images with S3 URLs
+// Helper function to replace base64 images with Cloudinary URLs
 const replaceBase64Images = async (content: string) => {
   const base64Regex =
     /<img\s+src="data:image\/(png|jpeg|jpg);base64,([^"]+)"[^>]*>/g;
   let match;
   let updatedContent = content;
 
+  // We need to use a loop that handles async properly.
+  // matchAll and Promise.all is better but let's stick to the current logic structure but correct
+  // However, regex.exec relies on statefull regex, which is fine here since we just loop.
+  // But replacing in `updatedContent` while iterating `content` is fine.
+
+  // Collecting matches first to avoid infinite loops if replacement contains the pattern (unlikely here)
+  const matches = [];
   while ((match = base64Regex.exec(content)) !== null) {
-    const base64Data = match[2];
-    console.log("Base64 Data:", base64Data.substring(0, 30)); // Log first 30 characters of base64 data
-    const s3Url = await uploadBase64ImageToS3(base64Data);
-    console.log("S3 URL:", s3Url); // Log S3 URL
-    updatedContent = updatedContent.replace(match[0], `<img src="${s3Url}" />`);
+      matches.push(match);
   }
 
-  console.log("Updated Content:", updatedContent); // Log updated content
+  for (const match of matches) {
+    const base64Data = match[2];
+    console.log("Base64 Data:", base64Data.substring(0, 30)); 
+    try {
+        const cloudinaryUrl = await uploadBase64Image(base64Data);
+        console.log("Cloudinary URL:", cloudinaryUrl);
+        updatedContent = updatedContent.replace(match[0], `<img src="${cloudinaryUrl}" />`);
+    } catch (err) {
+        console.error("Failed to upload image:", err);
+        // Optionally handle error, currently just skipping replacement
+    }
+  }
+
+  console.log("Updated Content:", updatedContent); 
   return updatedContent;
 };
 

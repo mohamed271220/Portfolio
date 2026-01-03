@@ -34,7 +34,9 @@ const Timeline = ({ data, mode }) => {
                                     />
                                 )}
                                 <div>
-                                    <span className="text-sm text-green-300">{new Date(item.from).toLocaleDateString()} - {new Date(item.to).toLocaleDateString()}</span>
+                                    <span className="text-sm text-green-300">
+                                        {new Date(item.from).toLocaleDateString()} - {item.current ? "Present" : new Date(item.to).toLocaleDateString()}
+                                    </span>
                                     <h2 className="text-2xl font-bold text-green-50">{mode === 'experiences' ? item.companyName : item.institutionName}</h2>
                                 </div>
                             </div>
