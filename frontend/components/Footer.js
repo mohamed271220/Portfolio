@@ -26,6 +26,7 @@ const Footer = ({ data }) => {
                         className="w-10 h-10 rounded-full border-2 hover:border-green-950 border-gray-400 flex items-center justify-center text-xl text-gray-400 hover:text-black hover:bg-green-500 transition"
                     >
                         <FaLinkedin />
+                        
                     </Link>
                 </div>
                 <div className="relative group">
